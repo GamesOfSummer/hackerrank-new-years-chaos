@@ -6,8 +6,6 @@ import {
 } from './helpers.js';
 
 function minimumBribes(peopleArray: number[]): number | string {
-    const visited = [];
-
     let bribeCount = 0;
     for (let i = 0; i < peopleArray.length; i++) {
         if (
@@ -15,12 +13,20 @@ function minimumBribes(peopleArray: number[]): number | string {
             peopleArray[i] === peopleArray[i] + 1
         ) {
             //skip
-        } else {
+        } else if (peopleArray[i] > peopleArray[i + 1]) {
+            // you have a bribe, but how much?
+
+            if (peopleArray[i] > peopleArray[i + 3]) {
+                //too many bribes
+                return 'Too chaotic';
+            } else if (peopleArray[i] > peopleArray[i + 2]) {
+                bribeCount++;
+            }
             bribeCount++;
         }
     }
 
-    return 0;
+    return bribeCount;
 }
 
 consoleStart();
