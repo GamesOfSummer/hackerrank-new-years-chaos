@@ -5,7 +5,8 @@ import {
     validateFxn,
 } from './helpers.js';
 
-function minimumBribes(peopleArray: number[]): number | string {
+function minimumBribes(peopleArray: number[]): void {
+    let isTooChaotic = false;
     let bribeCount = 0;
     for (let i = 0; i < peopleArray.length; i++) {
         if (
@@ -18,7 +19,8 @@ function minimumBribes(peopleArray: number[]): number | string {
 
             if (peopleArray[i] > peopleArray[i + 3]) {
                 //too many bribes
-                return 'Too chaotic';
+                isTooChaotic = true;
+                console.log('Too chaotic');
             } else if (peopleArray[i] > peopleArray[i + 2]) {
                 bribeCount++;
             }
@@ -26,13 +28,20 @@ function minimumBribes(peopleArray: number[]): number | string {
         }
     }
 
-    return bribeCount;
+    if (isTooChaotic === false) {
+        console.log(bribeCount);
+    }
 }
 
 consoleStart();
 
-validateFxn(minimumBribes([2, 1, 5, 3, 4]), 3);
-validateFxn(minimumBribes([2, 5, 1, 3, 4]), 'Too chaotic');
+minimumBribes([2, 1, 5, 3, 4]); // 3
+minimumBribes([2, 5, 1, 3, 4]); // too chaotic
+minimumBribes([1, 2, 5, 3, 4, 7, 8, 6]); // 4
+minimumBribes([1, 2, 5, 3, 7, 8, 6, 4]); // 7
+
+//validateFxn(minimumBribes([2, 1, 5, 3, 4]), 3);
+//validateFxn(minimumBribes([2, 5, 1, 3, 4]), 'Too chaotic');
 
 consoleEnd();
 consoleBuffer();
