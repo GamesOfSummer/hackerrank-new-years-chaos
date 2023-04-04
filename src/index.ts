@@ -9,21 +9,16 @@ function minimumBribes(peopleArray: number[]): void {
     let isTooChaotic = false;
     let bribeCount = 0;
     for (let i = 0; i < peopleArray.length; i++) {
-        if (
-            i < peopleArray.length + 1 &&
-            peopleArray[i] === peopleArray[i] + 1
-        ) {
-            //skip
-        } else if (peopleArray[i] > peopleArray[i + 1]) {
-            // you have a bribe, but how much?
-
-            if (peopleArray[i] > peopleArray[i + 3]) {
+        let innerCounter = 1;
+        while (peopleArray[i] > peopleArray[i + innerCounter]) {
+            if (innerCounter >= 3) {
                 //too many bribes
                 isTooChaotic = true;
                 console.log('Too chaotic');
-            } else if (peopleArray[i] > peopleArray[i + 2]) {
-                bribeCount++;
+                i = peopleArray.length; //break
             }
+
+            innerCounter++;
             bribeCount++;
         }
     }
