@@ -8,14 +8,11 @@ import {
 function minimumBribes(peopleArray: number[]): void {
     let isTooChaotic = false;
     let bribeCount = 0;
-    for (let i = 0; i < peopleArray.length; i++) {
+    for (let i = 0; i <= peopleArray.length; i++) {
         let innerCounter = 1;
         while (peopleArray[i] > peopleArray[i + innerCounter]) {
             if (innerCounter >= 3) {
-                //too many bribes
                 isTooChaotic = true;
-                console.log('Too chaotic');
-                i = peopleArray.length; //break
             }
 
             innerCounter++;
@@ -23,9 +20,8 @@ function minimumBribes(peopleArray: number[]): void {
         }
     }
 
-    if (isTooChaotic === false) {
-        console.log(bribeCount);
-    }
+    let output = isTooChaotic ? 'Too chaotic' : bribeCount;
+    console.log(output);
 }
 
 consoleStart();
